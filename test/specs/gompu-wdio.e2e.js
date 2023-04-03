@@ -1,4 +1,4 @@
-
+const allureReporter = require('@wdio/allure-reporter').default
 const RegisterPage = require('../pageobjects/register-page')
 const LoginPage = require('../pageobjects/login-page')
 const ForgotPasswordPage = require('../pageobjects/forgotPassword-page')
@@ -40,7 +40,7 @@ describe('feature-forgotPassword', () => {
         await ForgotPasswordPage.go_to_forgotPasswordPage()
     })
     it('TC04-Pengguna gagal meminta link forgot password dengan email yang tidak terdaftar', async () => {
-        await ForgotPasswordPage.forgotPassword('emailNgasal@mail.com')
+        await ForgotPasswordPage.forgotPassword('emailNgasal123@mail.com')
         await expect(popUpCommponent.popUpAlert).toBeExisting()
         await expect(popUpCommponent.popUpAlert).toHaveTextContaining(
             'Email tidak ditemukan!')
