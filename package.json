@@ -1,0 +1,27 @@
+{
+  "name": "wdio-gompu",
+  "version": "1.0.0",
+  "description": "automation testing using webdriverio",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "wdio": "wdio run ./wdio.conf.js"
+  },
+  "keywords": [
+    "wdio",
+    "webdriverio",
+    "automation",
+    "testing"
+  ],
+  "author": "Shidqi Adiatma",
+  "license": "ISC",
+  "devDependencies": {
+    "@faker-js/faker": "^7.6.0",
+    "@wdio/cli": "^8.6.9",
+    "@wdio/local-runner": "^8.6.9",
+    "@wdio/mocha-framework": "^8.6.8",
+    "@wdio/spec-reporter": "^8.6.8",
+    "chromedriver": "^111.0.0",
+    "wdio-chromedriver-service": "^8.1.1"
+  }
+}
