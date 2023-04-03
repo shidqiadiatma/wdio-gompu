@@ -40,7 +40,7 @@ describe('feature-forgotPassword', () => {
         await ForgotPasswordPage.go_to_forgotPasswordPage()
     })
     it('TC04-Pengguna gagal meminta link forgot password dengan email yang tidak terdaftar', async () => {
-        await ForgotPasswordPage.forgotPassword(emailNgasal)
+        await ForgotPasswordPage.forgotPassword('emailNgasal@mail.com')
         await expect(popUpCommponent.popUpAlert).toBeExisting()
         await expect(popUpCommponent.popUpAlert).toHaveTextContaining(
             'Email tidak ditemukan!')
@@ -77,25 +77,20 @@ describe('feature-login', () => {
     })
 })
 describe('feature-updateProfile', () => {
-    beforeEach('', async () =>{
-        await LoginPage.open()
-        await LoginPage.go_to_LoginPage()
-        await LoginPage.login(emailTester, passwordTester)
-        await expect(popUpCommponent.popUpAlert).toBeExisting()
-        await expect(popUpCommponent.popUpAlert).toHaveTextContaining(
-            'Berhasil Masuk!')
+    beforeEach ('', async () =>{
         await updateProfilePage.go_to_updateProfilePage()
     })
     it('TC09-Pengguna gagal memperbarui profile dengan mengosongkan semua data', async () => {
-        await LoginPage.login(emailNgasal, passwordTester)
+        await updateProfilePage.ClearAllData()
         await expect(popUpCommponent.popUpAlert).toBeExisting()
         await expect(popUpCommponent.popUpAlert).toHaveTextContaining(
-            'User tidak ditemukan!')
+            'Detail user berhasil diperbarui')
     })
     it('TC10-Pengguna berhasil memperbarui data profile dengan mengisi data yang valid', async () => {
-        await LoginPage.login(emailTester, 'passwordsalaaah')
+        var randomPhone = Math.floor(100000000 + Math.random() * 900000000000);
+        await updateProfilePage.updateData(faker.name.firstName(), 'shidqiadiatma@dispostable.com', randomPhone, faker.helpers.arrayElement(['Perempuan', 'Laki-laki']), faker.helpers.arrayElement(['12052000', '30122000', '11082001', '17012001', '23111990']), faker.address.cityName())
         await expect(popUpCommponent.popUpAlert).toBeExisting()
         await expect(popUpCommponent.popUpAlert).toHaveTextContaining(
-            'Email atau kata sandi tidak cocok')
+            'Detail user berhasil diperbarui')
     })
 })
