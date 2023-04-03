@@ -1,5 +1,4 @@
 const Page = require('./page');
-
 /**
  * sub page containing specific selectors and methods for a specific page
  */
@@ -19,7 +18,6 @@ class forgotPasswordPage extends Page {
     get button_submit () {
         return $('button[type="submit"]');
     }
-
     /**
      * a method to encapsule automation code to interact with the page
      * e.g. to login using username and password
@@ -32,7 +30,6 @@ class forgotPasswordPage extends Page {
         await this.inputEmail.setValue(email);
         await this.button_submit.click();
     }
-
     /**
      * overwrite specific options to adapt it to page object
      */
@@ -40,5 +37,4 @@ class forgotPasswordPage extends Page {
         return super.open();
     }
 }
-
 module.exports = new forgotPasswordPage();

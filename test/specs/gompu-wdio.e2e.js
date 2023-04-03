@@ -6,9 +6,17 @@ const popUpCommponent = require('../pageobjects/popUp_Alert')
 const {faker} = require('@faker-js/faker');
 const updateProfilePage = require('../pageobjects/updateProfile-page');
 
-const emailTester = 'shidqiadiatma@dispostable.com'
-const emailNgasal = 'emailngasal@mail.com'
-const passwordTester = 'passwordBenar12*'
+//Test Data
+var emailTester = ('shidqiadiatma@dispostable.com')
+var passwordTester = ('passwordBenar12*')
+var selectGender = faker.helpers.arrayElement(['Perempuan', 'Laki-laki'])
+var selectBirthday = faker.helpers.arrayElement(['12052000', '30122000', '11082001', '17012001', '23111990'])
+var randomName = faker.name.firstName()
+var randomCity = faker.address.cityName()
+var randomPhone = Math.floor(100000000 + Math.random() * 900000000000);
+var randomEmail1 = 'email'+ Math.floor(100000000 + Math.random() * 900000000) + '@mail.com';
+var randomEmail2 = faker.internet.email()
+var wrongPassword = 'passwordsalah'
 
 describe('[WebDriverIO] feature-registration', () => {
     beforeEach('', async () =>{
@@ -16,19 +24,19 @@ describe('[WebDriverIO] feature-registration', () => {
         await RegisterPage.go_to_registerPage()
     })
     it('TC01-Pengguna gagal registrasi menggunakan email terdaftar', async () => {
-        await RegisterPage.register('shidqi adiatma', emailTester, passwordTester)
+        await RegisterPage.register(randomName, emailTester, passwordTester)
         await expect(popUpCommponent.popUpAlert).toBeExisting()
         await expect(popUpCommponent.popUpAlert).toHaveTextContaining(
             'Email has already been taken')
     })
     it('TC02-Pengguna gagal registrasi menggunakan format password yang salah', async () => {
-        await RegisterPage.register('shidqi adiatma', faker.internet.email(), 'iniformatpasswordsalah')
+        await RegisterPage.register(randomName, randomEmail2, 'iniformatpasswordsalah')
         await expect(popUpCommponent.alertMessage_password).toBeExisting()
         await expect(popUpCommponent.alertMessage_password).toHaveTextContaining(
             'Kata Sandi tidak valid!')
     })
     it('TC03-Pengguna berhasil registrasi dengan email yang belum terdaftar', async () => {
-        await RegisterPage.register('shidqi adiatma', faker.internet.email(), passwordTester)
+        await RegisterPage.register(randomName, randomEmail2, passwordTester)
         await expect(popUpCommponent.popUpAlert).toBeExisting()
         await expect(popUpCommponent.popUpAlert).toHaveTextContaining(
             'Pendaftaran berhasil, harap verifikasi akun Anda!')
@@ -40,8 +48,7 @@ describe('[WebDriverIO] feature-forgotPassword', () => {
         await ForgotPasswordPage.go_to_forgotPasswordPage()
     })
     it('TC04-Pengguna gagal meminta link forgot password dengan email yang tidak terdaftar', async () => {
-        var emailRandom = 'emailngasal' + Math.floor(100000000 + Math.random() * 900000000000) + '@mail.com';
-        await ForgotPasswordPage.forgotPassword(emailRandom)
+        await ForgotPasswordPage.forgotPassword(randomEmail1)
         await expect(popUpCommponent.popUpAlert).toBeExisting()
         await expect(popUpCommponent.popUpAlert).toHaveTextContaining(
             'Email tidak ditemukan!')
@@ -59,13 +66,13 @@ describe('[WebDriverIO] feature-login', () => {
         await LoginPage.go_to_LoginPage()
     })
     it('TC06-Pengguna gagal login dengan email yang belum terdaftar', async () => {
-        await LoginPage.login(emailNgasal, passwordTester)
+        await LoginPage.login(randomEmail1, passwordTester)
         await expect(popUpCommponent.popUpAlert).toBeExisting()
         await expect(popUpCommponent.popUpAlert).toHaveTextContaining(
             'User tidak ditemukan!')
     })
     it('TC07-Pengguna gagal login dengan password yang salah', async () => {
-        await LoginPage.login(emailTester, 'passwordsalaaah')
+        await LoginPage.login(emailTester, wrongPassword)
         await expect(popUpCommponent.popUpAlert).toBeExisting()
         await expect(popUpCommponent.popUpAlert).toHaveTextContaining(
             'Email atau kata sandi tidak cocok')
@@ -88,8 +95,7 @@ describe('[WebDriverIO] feature-updateProfile', () => {
             'Detail user berhasil diperbarui')
     })
     it('TC10-Pengguna berhasil memperbarui data profile dengan mengisi data yang valid', async () => {
-        var randomPhone = Math.floor(100000000 + Math.random() * 900000000000);
-        await updateProfilePage.updateData(faker.name.firstName(), 'shidqiadiatma@dispostable.com', randomPhone, faker.helpers.arrayElement(['Perempuan', 'Laki-laki']), faker.helpers.arrayElement(['12052000', '30122000', '11082001', '17012001', '23111990']), faker.address.cityName())
+        await updateProfilePage.updateData(randomName, emailTester, randomPhone, selectGender, selectBirthday, randomCity)
         await expect(popUpCommponent.popUpAlert).toBeExisting()
         await expect(popUpCommponent.popUpAlert).toHaveTextContaining(
             'Detail user berhasil diperbarui')
