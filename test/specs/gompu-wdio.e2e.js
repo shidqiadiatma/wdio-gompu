@@ -4,6 +4,7 @@ const LoginPage = require('../pageobjects/login-page')
 const ForgotPasswordPage = require('../pageobjects/forgotPassword-page')
 const popUpCommponent = require('../pageobjects/popUp_Alert')
 const {faker} = require('@faker-js/faker');
+const updateProfilePage = require('../pageobjects/updateProfile-page');
 
 const emailTester = 'shidqiadiatma@dispostable.com'
 const emailNgasal = 'emailngasal@mail.com'
@@ -75,10 +76,15 @@ describe('feature-login', () => {
             'Berhasil Masuk!')
     })
 })
-describe('feature-login', () => {
+describe('feature-updateProfile', () => {
     beforeEach('', async () =>{
         await LoginPage.open()
         await LoginPage.go_to_LoginPage()
+        await LoginPage.login(emailTester, passwordTester)
+        await expect(popUpCommponent.popUpAlert).toBeExisting()
+        await expect(popUpCommponent.popUpAlert).toHaveTextContaining(
+            'Berhasil Masuk!')
+        await updateProfilePage.go_to_updateProfilePage()
     })
     it('TC09-Pengguna gagal memperbarui profile dengan mengosongkan semua data', async () => {
         await LoginPage.login(emailNgasal, passwordTester)
