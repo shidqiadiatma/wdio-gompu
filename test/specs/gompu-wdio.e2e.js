@@ -10,7 +10,7 @@ const emailTester = 'shidqiadiatma@dispostable.com'
 const emailNgasal = 'emailngasal@mail.com'
 const passwordTester = 'passwordBenar12*'
 
-describe('feature-registration', () => {
+describe('[WebDriverIO] feature-registration', () => {
     beforeEach('', async () =>{
         await RegisterPage.open()
         await RegisterPage.go_to_registerPage()
@@ -34,13 +34,14 @@ describe('feature-registration', () => {
             'Pendaftaran berhasil, harap verifikasi akun Anda!')
     })
 })
-describe('feature-forgotPassword', () => {
+describe('[WebDriverIO] feature-forgotPassword', () => {
     beforeEach('', async () =>{
         await ForgotPasswordPage.open()
         await ForgotPasswordPage.go_to_forgotPasswordPage()
     })
     it('TC04-Pengguna gagal meminta link forgot password dengan email yang tidak terdaftar', async () => {
-        await ForgotPasswordPage.forgotPassword('emailNgasal123@mail.com')
+        var emailRandom = 'emailngasal' + Math.floor(100000000 + Math.random() * 900000000000) + '@mail.com';
+        await ForgotPasswordPage.forgotPassword(emailRandom)
         await expect(popUpCommponent.popUpAlert).toBeExisting()
         await expect(popUpCommponent.popUpAlert).toHaveTextContaining(
             'Email tidak ditemukan!')
@@ -52,7 +53,7 @@ describe('feature-forgotPassword', () => {
             'Email telah terkirim, silahkan cek email Anda!')
     })
 })
-describe('feature-login', () => {
+describe('[WebDriverIO] feature-login', () => {
     beforeEach('', async () =>{
         await LoginPage.open()
         await LoginPage.go_to_LoginPage()
@@ -76,7 +77,7 @@ describe('feature-login', () => {
             'Berhasil Masuk!')
     })
 })
-describe('feature-updateProfile', () => {
+describe('[WebDriverIO] feature-updateProfile', () => {
     beforeEach ('', async () =>{
         await updateProfilePage.go_to_updateProfilePage()
     })
