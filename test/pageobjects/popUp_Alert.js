@@ -12,5 +12,11 @@ class popUpCommponent extends Page {
     get alertMessage_password () {
         return $('//*[@id="__layout"]/div/div/div[2]/div/main/form/span');
     }
+    /**
+    * overwrite specific options to adapt it to page object
+     */
+    open () {
+        return super.open();
+    }
 }
 module.exports = new popUpCommponent();

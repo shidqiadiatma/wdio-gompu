@@ -62,6 +62,12 @@ class updateprofilePage extends Page {
         await this.input_city.setValue(city);
         await this.button_save.click();
     }
+    /**
+     * overwrite specific options to adapt it to page object
+     */
+    open () {
+        return super.open();
+    }
 }
 module.exports = new updateprofilePage();
 
