@@ -18,10 +18,10 @@ var randomEmail1 = 'email'+ Math.floor(100000000 + Math.random() * 900000000) + 
 var randomEmail2 = faker.internet.email()
 var wrongPassword = 'passwordsalah'
 var photoProfile = faker.helpers.arrayElement(['C:/my-document/automations/Cypress/cypress/testData/fotoProfil/kucing6.jpg',
-                                                        'C:/my-document/automations/Cypress/cypress/testData/fotoProfil/kucing7.jpg',
-                                                        'C:/my-document/automations/Cypress/cypress/testData/fotoProfil/kucing8.jpg',
-                                                        'C:/my-document/automations/Cypress/cypress/testData/fotoProfil/kucing9.jpg',
-                                                        'C:/my-document/automations/Cypress/cypress/testData/fotoProfil/kucing10.jpg'])
+                                                'C:/my-document/automations/Cypress/cypress/testData/fotoProfil/kucing7.jpg',
+                                                'C:/my-document/automations/Cypress/cypress/testData/fotoProfil/kucing8.jpg',
+                                                'C:/my-document/automations/Cypress/cypress/testData/fotoProfil/kucing9.jpg',
+                                                'C:/my-document/automations/Cypress/cypress/testData/fotoProfil/kucing10.jpg'])
 
 describe('[WebDriverIO] feature-registration', () => {
     beforeEach('', async () =>{
