@@ -25,6 +25,7 @@ class forgotPasswordPage extends Page {
     async go_to_forgotPasswordPage(){
         await this.btnloginPage.click()
         await this.btnForgotpassword.click()
+        await browser.pause(500)
     }
     async forgotPassword (email) {
         await this.inputEmail.setValue(email);

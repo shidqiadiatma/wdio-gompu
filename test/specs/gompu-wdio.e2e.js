@@ -3,8 +3,8 @@ const RegisterPage = require('../pageobjects/register-page')
 const LoginPage = require('../pageobjects/login-page')
 const ForgotPasswordPage = require('../pageobjects/forgotPassword-page')
 const popUpCommponent = require('../pageobjects/popUp_Alert')
-const {faker} = require('@faker-js/faker');
 const updateProfilePage = require('../pageobjects/updateProfile-page');
+const {faker} = require('@faker-js/faker');
 
 //Test Data
 var emailTester = ('shidqiadiatma@dispostable.com')
@@ -17,6 +17,11 @@ var randomPhone = Math.floor(100000000 + Math.random() * 900000000000);
 var randomEmail1 = 'email'+ Math.floor(100000000 + Math.random() * 900000000) + '@mail.com';
 var randomEmail2 = faker.internet.email()
 var wrongPassword = 'passwordsalah'
+var photoProfile = faker.helpers.arrayElement(['C:/my-document/automations/Cypress/cypress/testData/fotoProfil/kucing6.jpg',
+                                                        'C:/my-document/automations/Cypress/cypress/testData/fotoProfil/kucing7.jpg',
+                                                        'C:/my-document/automations/Cypress/cypress/testData/fotoProfil/kucing8.jpg',
+                                                        'C:/my-document/automations/Cypress/cypress/testData/fotoProfil/kucing9.jpg',
+                                                        'C:/my-document/automations/Cypress/cypress/testData/fotoProfil/kucing10.jpg'])
 
 describe('[WebDriverIO] feature-registration', () => {
     beforeEach('', async () =>{
@@ -95,6 +100,10 @@ describe('[WebDriverIO] feature-updateProfile', () => {
             'Detail user berhasil diperbarui')
     })
     it('TC10-Pengguna berhasil memperbarui data profile dengan mengisi data yang valid', async () => {
+        var remotePhotoProfile = browser.uploadFile(photoProfile);
+        var input = $('input[type="file"]');
+        input.setValue(photoProfile);
+        browser.uploadFile(remotePhotoProfile);
         await updateProfilePage.updateData(randomName, emailTester, randomPhone, selectGender, selectBirthday, randomCity)
         await expect(popUpCommponent.popUpAlert).toBeExisting()
         await expect(popUpCommponent.popUpAlert).toHaveTextContaining(

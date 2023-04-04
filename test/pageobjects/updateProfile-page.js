@@ -15,6 +15,9 @@ class updateprofilePage extends Page {
     get button_ok () {
         return $('/html/body/div[2]/div/div[3]/button[1]');
     }
+    get btnUploadImage(){
+        return $('[type="file"]');
+    }
     get input_fullName(){
         return $('//*[@id="__layout"]/div/div/form/input[1]')
     }   
