@@ -1,4 +1,3 @@
-const allureReporter = require('@wdio/allure-reporter').default
 const RegisterPage = require('../pageobjects/register-page')
 const LoginPage = require('../pageobjects/login-page')
 const ForgotPasswordPage = require('../pageobjects/forgotPassword-page')

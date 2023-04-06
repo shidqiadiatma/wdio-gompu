@@ -1,11 +1,6 @@
 const Page = require('./page');
-/**
- * sub page containing specific selectors and methods for a specific page
- */
+
 class updateprofilePage extends Page {
-    /**
-     * define selectors using getter methods
-     */
     get subMenu_profile () {
         return $('//*[@id="__layout"]/div/div/header/div[1]/div[1]/div[2]/a[4]');
     }
@@ -14,9 +9,6 @@ class updateprofilePage extends Page {
     }
     get button_ok () {
         return $('/html/body/div[2]/div/div[3]/button[1]');
-    }
-    get btnUploadImage(){
-        return $('[type="file"]');
     }
     get input_fullName(){
         return $('//*[@id="__layout"]/div/div/form/input[1]')
@@ -62,9 +54,6 @@ class updateprofilePage extends Page {
         await this.input_city.setValue(city);
         await this.button_save.click();
     }
-    /**
-     * overwrite specific options to adapt it to page object
-     */
     open () {
         return super.open();
     }
