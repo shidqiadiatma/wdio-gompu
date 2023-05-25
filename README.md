@@ -1,7 +1,7 @@
 # wdio-gompu
 
 ## iteration-1
-![image](https://user-images.githubusercontent.com/112541317/229795584-c51c6c49-384e-42af-8d18-228eafe11427.png)
+![image](https://github.com/shidqiadiatma/wdio-gompu/assets/112541317/81e79378-78de-4a5a-9303-20f76229d0c4)
 
 ## iteration-2
 ![image](https://user-images.githubusercontent.com/112541317/229796170-a01300ea-7f61-4049-9037-2ea84f697e36.png)
