@@ -105,8 +105,8 @@ describe('[WebDriverIO] feature-updateProfile', () => {
         var input = $('input[type="file"]');
         input.setValue(photoProfile);
         browser.uploadFile(remotePhotoProfile);
-        await updateProfilePage.updateData(randomName, emailTester, randomPhone, selectGender, selectBirthday, 
-            randomCity)
+        await updateProfilePage.updateData(
+            randomName, emailTester, randomPhone, selectGender, selectBirthday, randomCity)
         await expect(popUpCommponent.popUpAlert).toBeExisting()
         await expect(popUpCommponent.popUpAlert).toHaveTextContaining(
             'Detail user berhasil diperbarui')
